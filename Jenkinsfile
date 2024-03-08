@@ -1,8 +1,14 @@
 pipeline {
     agent any
     stages {
+        stage('Debugging') {
+            steps {
+                echo 'Starting debugging...'
+            }
+        }
         stage('Build') {
             steps {
+                echo 'Building...'
                 script {
                     sh 'npm install'
                 }
@@ -10,6 +16,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                echo 'Testing...'
                 script {
                     sh 'npm test'
                 }
@@ -17,6 +24,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
+                echo 'Building Docker image...'
                 script {
                     docker.build("minha-app:${env.BUILD_ID}")
                 }
@@ -24,6 +32,7 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
+                echo 'Deploying to Kubernetes...'
                 script {
                     sh 'kubectl apply -f deployment.yaml'
                 }
