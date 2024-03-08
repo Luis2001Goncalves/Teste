@@ -11,9 +11,9 @@ spec:
     metadata:
       labels:
         app: minha-app
-  spec:
-    containers:
-    - name: minha-app
-      image: minha-app:$(BUILD_ID}
-      ports:
-      - containerPort: 3000
+    spec:
+      containers:
+        - name: minha-app
+          image: minha-app:latest
+          ports:
+            - containerPort: 3000
